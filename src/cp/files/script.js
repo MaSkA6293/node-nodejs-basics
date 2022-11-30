@@ -1,12 +1,14 @@
-const args = process.argv.slice(2);
+import { EOL } from 'os';
+import {printArguments} from "../../helpers.js"
 
-console.log(`Total number of arguments is ${args.length}`);
-console.log(`Arguments: ${JSON.stringify(args)}`);
+ const args = process.argv.slice(2);
 
-const echoInput = (chunk) => {
-    const chunkStringified = chunk.toString();
-    if (chunkStringified.includes('CLOSE')) process.exit(0);
-    process.stdout.write(`Received from master process: ${chunk.toString()}\n`)
+ printArguments(args)
+
+ const echoInput = (chunk) => {
+  process.stdout.write(
+    `Hello parent, I've got a message from you. You've sent me a message: ${chunk.toString()}${EOL}`
+  );
 };
 
 process.stdin.on('data', echoInput);
