@@ -1,15 +1,13 @@
 import { EOL } from 'os';
+import {printArguments} from "../../helpers.js"
 
-const args = process.argv.slice(2);
+ const args = process.argv.slice(2);
 
-console.log(`Total number of arguments is ${args.length}`);
-console.log(`Arguments: ${JSON.stringify(args)}`);
+ printArguments(args)
 
-const echoInput = (chunk) => {
-  const chunkStringified = chunk.toString();
-
+ const echoInput = (chunk) => {
   process.stdout.write(
-    `Received from master process: ${chunk.toString()}${EOL}`
+    `Hello parent, I've got a message from you. You've sent me a message: ${chunk.toString()}${EOL}`
   );
 };
 

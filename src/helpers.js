@@ -15,3 +15,15 @@ export const isFileExist = async (path) => {
     return false;
   }
 };
+
+
+export const printArguments = (args)=>{
+ const argToPrint = args.reduce((acc, curr, index, arr) => {
+    if (curr.substring(0, 2) === '--' && arr[index + 1]) {
+     return   [...acc, {name:curr.slice(2) ,value: arr[index + 1]}]
+    }
+    return acc;
+  }, [])   
+  console.log (`Hello, I'm a child and I've got ${argToPrint.length} argument${argToPrint.length>1?"s":""}, here there are:`)
+  console.table(argToPrint);
+}

@@ -15,17 +15,13 @@ const spawnChildProcess = async (args) => {
   });
 
   process.stdin.on('data', (msg) => {
-    console.log(`Send to the child process: ${msg.toString()}${EOL}`);
+    console.log(`Send to the child process from parent: ${msg.toString()}${EOL}`);
     child.stdin.write(msg);
   });
 
   child.stdout.on('data', (data) => {
+    console.log(`Parent received from child:${EOL}`);
     console.log(data.toString());
-  });
-
-  child.stderr.on('data', (data) => {
-    console.log(data.toString());
-    child.kill();
   });
 };
 
